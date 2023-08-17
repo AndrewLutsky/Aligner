@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<link rel = "stylesheet" href = "static/css/mainpage.css">
+	
+		<title> Aligner </title>
+		<!---- header tab selector I will add later ----!>
+		<div class = "tab">
+		</div>
+	</head>
+
+
+	<body>
+		<div class = "pageselector"> 
+		</div>
+		<div> 
+			<h1> Upload fasta file </h1>
+			<p>Please input your upload a fasta file, note that this is a string aligner and that arbitrary characters can be used.</p>
+			<form name = "fastafile" id = "fastafile" action = "/results" method = "POST" enctype="multipart/form-data">
+				<input type="file" id="sequence" name="sequence" accept=".fasta" onchange="submitseq()">
+			</form>
+		</div>
+	<body>
+	<script>
+		function submitseq() {
+  			document.getElementById("fastafile").submit();
+		}
+	</script>
+</html>
