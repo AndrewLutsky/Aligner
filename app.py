@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import faread
+import faread as fr
 import pandas as pd
 import json
 
@@ -15,9 +15,9 @@ def welcome():
 @app.route("/results", methods = ['POST'])
 def getalign():
     data = request.files['sequence']
-    strdata = data.read()
-    print(strdata)
-    align = 0
+    objs = fr.readsequences(data.read())
+    for seq in objs:
+        print(seq.seq)
     return render_template("results.html")
 
 
