@@ -14,10 +14,9 @@ def welcome():
 #app route to results page
 @app.route("/results", methods = ['POST'])
 def getalign():
-    data = request.files['sequence']
-    objs = fr.readsequences(data.read())
-    for seq in objs:
-        print(seq.seq)
+    data = request.files['sequence'].stream.read().decode('UTF-8')
+    objs = fr.readsequences(data)
+    fr.align("NW", objs[0].getSequence(), objs[1].getSequence())
     return render_template("results.html")
 
 
