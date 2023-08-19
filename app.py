@@ -16,7 +16,8 @@ def welcome():
 def getalign():
     data = request.files['sequence'].stream.read().decode('UTF-8')
     objs = fr.readsequences(data)
-    fr.align("NW", objs[0].getSequence(), objs[1].getSequence())
+    arr = fr.align("NW", [objs[0].getSequence(), objs[1].getSequence()])
+    print(arr)
     return render_template("results.html")
 
 
