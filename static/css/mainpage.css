@@ -3,14 +3,26 @@ head {
 }
 body {
 	background-color: #CDE6F5;
+	margin: 50px 50px 50px 50px #E1DAE2;;
 }
 
 
-#sequenceupload {
+#sequence {
 	padding-bottom: 20px;
+	margin: 10px 10px 10px 10px;
 }	
 
-#sequencesubmit {
-	padding-top: 10px;
+#Scoring_Matrix {
+	display: none;
+	margin: 10px 10px 10px 10px;
 }
 
+#Gap_PenaltyContainer {
+	display: block;
+	margin: 10px 10px 10px 10px;
+}
+
+#Mismatch_PenaltyContainer {
+	display: block;
+	margin: 10px 10px 10px 10px;
+}

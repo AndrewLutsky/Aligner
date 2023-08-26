@@ -15,16 +15,48 @@
 		<div class = "pageselector"> 
 		</div>
 		<div> 
-			<h1> Upload fasta file </h1>
-			<p>Please input your upload a fasta file, note that this is a string aligner and that arbitrary characters can be used.</p>
+			<h1> Align Custom Fasta File </h1>
+			<p>Please input your upload a fasta file, note that this is a string aligner and that arbitrary characters can't be used.</p>
 			<form name = "fastafile" id = "fastafile" action = "/results" method = "POST" enctype="multipart/form-data">
+				<label for="sequence"> Click to upload .fasta file </label>
 				<input type="file" id="sequence" name="sequence" accept=".fasta" onchange="submitseq()">
+				
+				<br></br>
+				<label for = "flagCustomScore"> Use Custom Scoring Matrix: </label>
+				<input type="checkbox" id="flagCustomScore" name="flagCustomScore" onchange="scoringAppear()">	
+				
+				<br></br>
+				<input type="file" id="Scoring_Matrix" name="Scoring_Matrix" accept=".txt">
+				<div id="Gap_PenaltyContainer">
+					<label for = "Gap_Penalty">Gap Penalty</label>
+					<input type="text" id="Gap_Penalty" name="Gap_Penalty">
+				</div>
+				<div id = "Mismatch_PenaltyContainer">
+					<label for = "Mismatch_Penalty">Mismatch Penalty</label>
+					<input type="text" id="Mismatch_Penalty" name="Mismatch_Penalty">
+				</div>
 			</form>
+		</div>
+		<div>
+	
 		</div>
 	<body>
 	<script>
 		function submitseq() {
   			document.getElementById("fastafile").submit();
+		}
+		function scoringAppear() {
+			//credit to https://jsfiddle.net/bm2Nu/1/
+
+			var checkScoringMatrixFlag = document.getElementById("flagCustomScore"),
+			    gapPenaltyBox = document.getElementById("Gap_PenaltyContainer"),
+			    mismatchPenaltyBox = document.getElementById("Mismatch_PenaltyContainer"),
+			    scoringMatrixSubmit = document.getElementById("Scoring_Matrix");
+
+			scoringMatrixSubmit.style.display = (checkScoringMatrixFlag.checked ? "block" : "none");
+			gapPenaltyBox.style.display = (checkScoringMatrixFlag.checked ? "none" : "block");
+			mismatchPenaltyBox.style.display = (checkScoringMatrixFlag.checked ? "none" : "block");
+			
 		}
 	</script>
 </html>
