@@ -35,6 +35,11 @@
 					<label for = "Mismatch_Penalty">Mismatch Penalty</label>
 					<input type="text" id="Mismatch_Penalty" name="Mismatch_Penalty">
 				</div>
+
+				<div id = "finalSubmit">
+					<label for "finalSubmitButton">Submit!</label>
+					<input type="submit" id="finalSubmitButton"></input>
+				</div>
 			</form>
 		</div>
 		<div>
@@ -52,7 +57,8 @@
 			    gapPenaltyBox = document.getElementById("Gap_PenaltyContainer"),
 			    mismatchPenaltyBox = document.getElementById("Mismatch_PenaltyContainer"),
 			    scoringMatrixSubmit = document.getElementById("Scoring_Matrix");
-
+			    finalSubmit = document.getElementById("finalSubmit")
+			finalSubmit.style.display = (checkScoringMatrixFlag.checked ? "none" : "block");
 			scoringMatrixSubmit.style.display = (checkScoringMatrixFlag.checked ? "block" : "none");
 			gapPenaltyBox.style.display = (checkScoringMatrixFlag.checked ? "none" : "block");
 			mismatchPenaltyBox.style.display = (checkScoringMatrixFlag.checked ? "none" : "block");

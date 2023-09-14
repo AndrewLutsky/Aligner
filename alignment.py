@@ -70,9 +70,6 @@ def align(method, sequences) -> list:
 #Matrix is flipped over diagonal -> to fix
 def nw(sequences) -> list:
     substitution = charMappingDefault(sequences[0], sequences[1])
-    print(substitution)
-    print("The lengths of sequences 0 and 1 respectively are: ",len(sequences[0]), len(sequences[1]))
-
     arr = np.zeros((len(sequences[1])+1,len(sequences[0])+1), dtype = int)
     gap = 1
     #mapping the first column and row of array
@@ -88,7 +85,6 @@ def nw(sequences) -> list:
     for i in range(1, len(arr)):
             #j is the length of the array
             for j in range(1, len(arr[0])):
-                print(i,j)
                 #f_(i-1,j-1) + S
                 diag = arr[i-1,j-1] + substitution[(sequences[0][j-1], sequences[1][i-1])]
                 #f_(i-1,j) + gap
@@ -98,7 +94,6 @@ def nw(sequences) -> list:
                 vert = arr[i,j-1] - gap
 
                 arr[i][j] = max([diag, horiz, vert])
-    print(arr)
     return arr
 
 def pathTracing(arr) -> list:
@@ -108,7 +103,6 @@ def pathTracing(arr) -> list:
     while (i, j) != (0, 0):
         if (i < 0 or j < 0):
             raise ValueError("Path Tracing Failed")
-        print(i,j)
         #find the max value for diagonal, vertical, and horizontal and
         diag = (i-1, j-1)
         horiz = (i, j-1)
@@ -131,16 +125,13 @@ def pathTracing(arr) -> list:
                 path.append(vert)
                 i, j = vert[0], vert[1]
         else:
-            print("on edge")
             #need to check if on vertical or horizontal edge
             #vertical edge
             if j == 0:
-                print("appended vertical on edge")
                 path.append(vert)
                 i,j = vert[0],vert[1]
             #horizontal edge
             else:
-                print("horizontal edge")
                 path.append(horiz)
                 i,j = horiz[0], horiz[1]
     return path
@@ -163,3 +154,12 @@ def customMapping(customMatrix) -> dict:
     #not implemented
     raise NotImplemented("custom matrix mapping is not implemented")
     return {}
+
+
+
+def getAlignment(arr, path, seq1, seq2) -> (str, str):
+    for i in path:
+        print(i)
+
+    return ("", "")
+

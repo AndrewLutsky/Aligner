@@ -18,9 +18,8 @@ def getalign():
     objs = al.readsequences(data)
     arr = al.align("NW", [objs[0].getSequence(), objs[1].getSequence()])
     path = al.pathTracing(arr)
-
-    print(arr, path)
-    return render_template("results.html")
+    al1, al2 = al.getAlignment(arr, path, objs[0].getSequence(), objs[1].getSequence())    
+    return render_template("results.html", al1, al2)
 
 
 if __name__ == '__main__':
