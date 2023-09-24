@@ -14,12 +14,22 @@ def welcome():
 #app route to results page
 @app.route("/results", methods = ['POST'])
 def getalign():
+    #gets alignment after reading file
     data = request.files['sequence'].stream.read().decode('UTF-8')
+
+    #reads sequences into objects file
     objs = al.readsequences(data)
+
+    #creates an array using dynamic programming and NW algorithm
     arr = al.align("NW", [objs[0].getSequence(), objs[1].getSequence()])
+
+    #backtracing of the array
     path = al.pathTracing(arr)
-    al1, al2 = al.getAlignment(arr, path, objs[0].getSequence(), objs[1].getSequence())    
-    return render_template("results.html", al1, al2)
+
+    print(arr)
+    #uses the path of the array, the array, and the two strings to generate two alignment strings
+    al1, al2 = al.getAlignment(path, objs[0].getSequence(), objs[1].getSequence())    
+    return render_template("results.html", alList = [al1, al2])
 
 
 if __name__ == '__main__':

@@ -112,7 +112,6 @@ def pathTracing(arr) -> list:
         horizValue = arr[horiz[0], horiz[1]]
         vertValue = arr[vert[0], vert[1]]
         flagCheckZeros = (i == 0 or j == 0)
-        print(flagCheckZeros)
         if not (flagCheckZeros):
             #if diagonal add i and j to the positions
             if diagValue >= horizValue and diagValue >= vertValue:
@@ -157,9 +156,47 @@ def customMapping(customMatrix) -> dict:
 
 
 
-def getAlignment(arr, path, seq1, seq2) -> (str, str):
-    for i in path:
-        print(i)
+def getAlignment(path, seq1, seq2) -> (str, str):
 
-    return ("", "")
+    al1 = ""
+    al2 = ""
+    #prints out the first sequence, second sequence and two lengths respectively
+    print(seq1, seq2, len(seq1), len(seq2))
+    
+
+    #Find the change in coordiantes
+    dpath = []
+    for i in range(1, len(path)):
+        dpathToAdd = [path[i][0]-path[i-1][0], path[i][1]-path[i-1][1]]
+        dpath.append(dpathToAdd)
+    
+    #enumerates through path array
+    for i in range(0, len(dpath)):
+        #prints out index
+        
+        #Checks to see if for this index its vertical traversal
+        print(dpath[i])
+        print(dpath[i][0], dpath[i][1])
+        if dpath[i][0] < 0 and dpath[i][1] == 0:
+            print("vertical")
+            print(seq1)
+            al1 = "-" + al1
+            al2 = seq2[path[i][0]-1] + al2
+        elif dpath[i][0] == 0 and dpath[i][0] < 0:
+            print("horizontal")
+            print(seq1)
+            al1 = seq1[path[i][1]-1] + al1
+            al2 = "-" + al2
+        else:
+            print("diagonal")
+            print(seq1, seq2)
+            al1 = seq1[path[i][1]-1] + al1
+            al2 = seq2[path[i][0]-1] + al2
+        #seq1 is the second value in the path, seq2 is the first value in the path
+        #establishes current coordinate of the path
+
+        #prints out the coordinates
+
+        print(al1, al2)
+    return [al1, al2]
 

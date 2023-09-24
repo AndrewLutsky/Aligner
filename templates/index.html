@@ -16,7 +16,8 @@
 		</div>
 		<div> 
 			<h1> Align Custom Fasta File </h1>
-			<p>Please input your upload a fasta file, note that this is a string aligner and that arbitrary characters can't be used.</p>
+			<p>Please input your upload a fasta file, note that this is a string aligner and that arbitrary characters can be used. This program utilizes Needleman Wunsch
+			string alignment to find the global alignment of your string fasta file. </p>
 			<form name = "fastafile" id = "fastafile" action = "/results" method = "POST" enctype="multipart/form-data">
 				<label for="sequence"> Click to upload .fasta file </label>
 				<input type="file" id="sequence" name="sequence" accept=".fasta" onchange="submitseq()">
