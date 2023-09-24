@@ -182,7 +182,7 @@ def getAlignment(path, seq1, seq2) -> (str, str):
             print(seq1)
             al1 = "-" + al1
             al2 = seq2[path[i][0]-1] + al2
-        elif dpath[i][0] == 0 and dpath[i][0] < 0:
+        elif dpath[i][0] == 0 and dpath[i][1] < 0:
             print("horizontal")
             print(seq1)
             al1 = seq1[path[i][1]-1] + al1
